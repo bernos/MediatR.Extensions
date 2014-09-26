@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/bernos/MediatR.Extensions</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright 2014</copyright>
+    <tags>MediatR</tags>
+    <dependencies>
+      <dependency id="MediatR.Extensions" version="0.0.1"/>
+    </dependencies>
+  </metadata>  
+</package>

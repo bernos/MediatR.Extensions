@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MediatR.Extensions")]
-[assembly: AssemblyDescription("Handy extensions for MediatR")]
+[assembly: AssemblyTitle("MediatR.Extensions.Autofac")]
+[assembly: AssemblyDescription("Autofac implementation of IMediatorBuilder")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Brendan McMahon")]
-[assembly: AssemblyProduct("MediatR.Extensions")]
+[assembly: AssemblyProduct("MediatR.Extensions.Autofac")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("27c9225e-cae9-4048-a853-d5371180d93f")]
+[assembly: Guid("4b906fd4-eefa-480d-a01e-4af18bb2f8e6")]
 
 // Version information for an assembly consists of the following four values:
 //

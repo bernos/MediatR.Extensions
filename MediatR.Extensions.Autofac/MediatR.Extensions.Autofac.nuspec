@@ -7,9 +7,10 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <projectUrl>https://github.com/bernos/MediatR.Extensions</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/bernos/MediatR.Extensions/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <copyright>Copyright 2014</copyright>
+    <copyright>Copyright Brendan McMahon 2014</copyright>
     <tags>MediatR</tags>
     <dependencies>
       <dependency id="MediatR.Extensions" version="0.0.1"/>

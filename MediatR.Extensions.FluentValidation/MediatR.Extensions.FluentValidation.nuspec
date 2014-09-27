@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/bernos/MediatR.Extensions</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/bernos/MediatR.Extensions/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright Brendan McMahon 2014</copyright>
+    <tags>MediatR FluentValidation</tags>
+  </metadata>  
+</package>

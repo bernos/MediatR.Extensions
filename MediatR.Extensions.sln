@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NuGetPack.bat = NuGetPack.bat
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.Extensions.log4net", "MediatR.Extensions.log4net\MediatR.Extensions.log4net.csproj", "{BD9613C7-200E-4BF3-AEE3-825368E81E4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{E96912CC-BF9C-4754-B655-755516F9B53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E96912CC-BF9C-4754-B655-755516F9B53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E96912CC-BF9C-4754-B655-755516F9B53D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD9613C7-200E-4BF3-AEE3-825368E81E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD9613C7-200E-4BF3-AEE3-825368E81E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD9613C7-200E-4BF3-AEE3-825368E81E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD9613C7-200E-4BF3-AEE3-825368E81E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

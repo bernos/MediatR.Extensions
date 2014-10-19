@@ -12,5 +12,8 @@
     <description>$description$</description>
     <copyright>Copyright Brendan McMahon 2014</copyright>
     <tags>MediatR FluentValidation</tags>
+    <dependencies>
+      <dependency id="MediatR.Extensions" version="0.0.3"/>
+    </dependencies>
   </metadata>  
 </package>

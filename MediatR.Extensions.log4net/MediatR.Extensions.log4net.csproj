@@ -61,10 +61,17 @@
   <ItemGroup>
     <Compile Include="AsyncLoggingRequestHandler.cs" />
     <Compile Include="LoggingRequestHandler.cs" />
+    <Compile Include="MediatorBuilderExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediatR.Extensions\MediatR.Extensions.csproj">
+      <Project>{4EDAA61B-58B3-4187-A92C-1AEA8E520B47}</Project>
+      <Name>MediatR.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E0AD687-02FF-45CB-9599-66C00806ADF7}"
 	ProjectSection(SolutionItems) = preProject
 		NuGetPack.bat = NuGetPack.bat
+		NuGetPush.bat = NuGetPush.bat
+		Set-PackageVersion.ps1 = Set-PackageVersion.ps1
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.Extensions.log4net", "MediatR.Extensions.log4net\MediatR.Extensions.log4net.csproj", "{BD9613C7-200E-4BF3-AEE3-825368E81E4B}"

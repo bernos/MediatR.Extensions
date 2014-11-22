@@ -13,7 +13,7 @@
     <copyright>Copyright Brendan McMahon 2014</copyright>
     <tags>MediatR</tags>
     <dependencies>
-      <dependency id="MediatR.Extensions" version="0.0.4"/>
+      <dependency id="MediatR.Extensions" version="0.0.5"/>
     </dependencies>
   </metadata>  
 </package>

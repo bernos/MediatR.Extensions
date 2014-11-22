@@ -9,7 +9,7 @@ Task Default -Depends Build
 Task Publish -Depends Package {
     foreach($project in $projects) {
         Get-ChildItem | Where-Object -FilterScript {
-            ($_.Name.Contains("$project.$versions")) -and !($_.Name.Contains(".symbols")) -and ($_.Extension -eq '.nupkg')    
+            ($_.Name.Contains("$project.$version")) -and !($_.Name.Contains(".symbols")) -and ($_.Extension -eq '.nupkg')    
         } | ForEach-Object {
             exec { nuget push $_.FullName }
         }

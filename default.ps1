@@ -20,8 +20,7 @@ Task Package -Depends Set-Versions,Build {
     foreach($project in $projects) {
         Get-ChildItem -Path "$project\*.csproj" | ForEach-Object {            
             exec { nuget pack -sym $_.FullName -Prop Configuration=$configuration }
-        }
-        
+        }        
     }
 }
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.Extensions", "MediatR.Extensions\MediatR.Extensions.csproj", "{4EDAA61B-58B3-4187-A92C-1AEA8E520B47}"
 EndProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{67704C
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.Extensions.Autofac.Tests", "MediatR.Extensions.Autofac.Tests\MediatR.Extensions.Autofac.Tests.csproj", "{ABE9681E-3770-46D1-8E6A-0145C5E20B8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{BD9613C7-200E-4BF3-AEE3-825368E81E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD9613C7-200E-4BF3-AEE3-825368E81E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD9613C7-200E-4BF3-AEE3-825368E81E4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE9681E-3770-46D1-8E6A-0145C5E20B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE9681E-3770-46D1-8E6A-0145C5E20B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE9681E-3770-46D1-8E6A-0145C5E20B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE9681E-3770-46D1-8E6A-0145C5E20B8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

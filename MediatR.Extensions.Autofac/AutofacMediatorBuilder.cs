@@ -49,6 +49,24 @@ namespace MediatR.Extensions.Autofac
                 .Select(i => new KeyedService(HandlerKey, i)));
         }
 
+        protected override void RegisterRequestHandler(Type type)
+        {
+            var services = type.GetInterfaces()
+                .Where(i => i.IsClosedTypeOf(typeof (IRequestHandler<,>)))
+                .Select(i => new KeyedService(HandlerKey, i) as Service);
+
+            _builder.RegisterType(type).As(services.ToArray());
+        }
+
+        protected override void RegisterAsyncRequestHandler(Type type)
+        {
+            var services = type.GetInterfaces()
+                .Where(i => i.IsClosedTypeOf(typeof(IAsyncRequestHandler<,>)))
+                .Select(i => new KeyedService(AsyncHandlerKey, i) as Service);
+
+            _builder.RegisterType(type).As(services.ToArray());
+        }
+
         protected override void RegisterAsyncRequestHandlersFromAssembly(Assembly assembly)
         {
             _builder.RegisterAssemblyTypes(assembly).As(t => t.GetInterfaces()

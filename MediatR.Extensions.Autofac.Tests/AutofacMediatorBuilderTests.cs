@@ -1,23 +1,17 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xunit;
 using Autofac;
 
 namespace MediatR.Extensions.Autofac.Tests
 {
-    public class MediatorBuilderTests
+    public abstract class MediatorBuilderTests
     {
-        private readonly ILifetimeScope container;
-
-        public MediatorBuilderTests()
-        {
-            container = new ContainerBuilder().Build();
-        }
+        protected abstract IMediatorBuilder GetMediatorBuilder();
 
         [Fact]
         public void Should_Register_Handler()
         {
-            var mediator = new AutofacMediatorBuilder(container)
+            var mediator = GetMediatorBuilder()
                 .WithRequestHandler(typeof (PingHandler))
                 .Build();
 
@@ -29,7 +23,7 @@ namespace MediatR.Extensions.Autofac.Tests
         [Fact]
         public async Task Should_Register_Async_Handler()
         {
-            var mediator = new AutofacMediatorBuilder(container)
+            var mediator = GetMediatorBuilder()
                 .WithRequestHandler(typeof(AsyncPingHandler))
                 .Build();
 
@@ -41,8 +35,8 @@ namespace MediatR.Extensions.Autofac.Tests
         [Fact]
         public async Task Should_Register_All_Handlers_From_Assembly()
         {
-            var mediator = new AutofacMediatorBuilder(container)
-                .WithRequestHandlerAssemblies(typeof (MediatorBuilderTests).Assembly)
+            var mediator = GetMediatorBuilder()
+                .WithRequestHandlerAssemblies(typeof (AutofacMediatorBuilderTests).Assembly)
                 .Build();
 
             var result1 = mediator.Send(new Ping {Message = "One"});
@@ -61,7 +55,7 @@ namespace MediatR.Extensions.Autofac.Tests
         [Fact]
         public void Should_Register_Decorator()
         {
-            var mediator = new AutofacMediatorBuilder(container)
+            var mediator = GetMediatorBuilder()
                 .WithRequestHandler(typeof(PingHandler))
                 .WithRequestDecorator("decorator_one", typeof(DecoratorOne<,>))
                 .WithRequestDecorator("decorator_two", typeof(DecoratorTwo<,>))
@@ -75,7 +69,7 @@ namespace MediatR.Extensions.Autofac.Tests
         [Fact]
         public async Task Should_Register_Async_Decorator()
         {
-            var mediator = new AutofacMediatorBuilder(container)
+            var mediator = GetMediatorBuilder()
                 .WithRequestHandler(typeof(AsyncPingHandler))
                 .WithRequestDecorator("decorator_one", typeof(AsyncDecoratorOne<,>))
                 .WithRequestDecorator("decorator_two", typeof(AsyncDecoratorTwo<,>))
@@ -84,6 +78,21 @@ namespace MediatR.Extensions.Autofac.Tests
             var pong = await mediator.SendAsync(new Ping { Message = "Begin" });
 
             Assert.Equal("BeginDecoratorTwoDecoratorOneHandledAsync", pong.Message);
+        }
+    }
+
+    public class AutofacMediatorBuilderTests : MediatorBuilderTests
+    {
+        private readonly ILifetimeScope container;
+
+        public AutofacMediatorBuilderTests()
+        {
+            container = new ContainerBuilder().Build();
+        }
+
+        protected override IMediatorBuilder GetMediatorBuilder()
+        {
+            return new AutofacMediatorBuilder(new ContainerBuilder().Build());
         }
     }
 }

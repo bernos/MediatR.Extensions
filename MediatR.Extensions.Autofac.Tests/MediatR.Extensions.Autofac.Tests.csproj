@@ -57,7 +57,7 @@
     <Compile Include="DecoratorOne.cs" />
     <Compile Include="DecoratorTwo.cs" />
     <Compile Include="IRequestWithMessage.cs" />
-    <Compile Include="MediatorBuilderTests.cs" />
+    <Compile Include="AutofacMediatorBuilderTests.cs" />
     <Compile Include="PingHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

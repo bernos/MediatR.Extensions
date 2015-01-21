@@ -4,6 +4,4 @@
     {
         string Message { get; set; }
     }
-
-
 }

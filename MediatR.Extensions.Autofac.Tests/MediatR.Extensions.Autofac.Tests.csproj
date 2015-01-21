@@ -56,8 +56,10 @@
     <Compile Include="AnotherPingHandler.cs" />
     <Compile Include="DecoratorOne.cs" />
     <Compile Include="DecoratorTwo.cs" />
+    <Compile Include="INotificationWithCount.cs" />
     <Compile Include="IRequestWithMessage.cs" />
     <Compile Include="AutofacMediatorBuilderTests.cs" />
+    <Compile Include="NoteHandler.cs" />
     <Compile Include="PingHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

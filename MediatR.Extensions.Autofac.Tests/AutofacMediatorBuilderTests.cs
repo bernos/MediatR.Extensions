@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Reflection;
+using System.Threading.Tasks;
 using Xunit;
 using Autofac;
 
@@ -7,7 +9,8 @@ namespace MediatR.Extensions.Autofac.Tests
     public abstract class MediatorBuilderTests
     {
         protected abstract IMediatorBuilder GetMediatorBuilder();
-
+        protected abstract Assembly GetTestAssembly();
+        
         [Fact]
         public void Should_Register_Handler()
         {
@@ -36,7 +39,7 @@ namespace MediatR.Extensions.Autofac.Tests
         public async Task Should_Register_All_Handlers_From_Assembly()
         {
             var mediator = GetMediatorBuilder()
-                .WithRequestHandlerAssemblies(typeof (AutofacMediatorBuilderTests).Assembly)
+                .WithRequestHandlerAssemblies(GetTestAssembly())
                 .Build();
 
             var result1 = mediator.Send(new Ping {Message = "One"});
@@ -79,6 +82,77 @@ namespace MediatR.Extensions.Autofac.Tests
 
             Assert.Equal("BeginDecoratorTwoDecoratorOneHandledAsync", pong.Message);
         }
+
+        [Fact]
+        public void Should_Register_NotificationHandler()
+        {
+            var mediator = GetMediatorBuilder()
+                .WithNotificationHandler(typeof (NoteHandler))
+                .Build();
+
+            var notification = new Note();
+
+            mediator.Publish(notification);
+
+            Assert.Equal(1, notification.Count);
+        }
+
+        [Fact]
+        public void Should_Register_Multiple_NotificationHandlers()
+        {
+            var mediator = GetMediatorBuilder()
+                .WithNotificationHandler(typeof (NoteHandler))
+                .WithNotificationHandler(typeof (AnotherNoteHandler))
+                .Build();
+
+            var notification = new Note();
+
+            mediator.Publish(notification);
+
+            Assert.Equal(2, notification.Count);
+        }
+
+        [Fact]
+        public async Task Should_Register_Async_NotificationHandler()
+        {
+            var mediator = GetMediatorBuilder()
+                .WithNotificationHandler(typeof (AsyncNoteHandler))
+                .Build();
+
+            var notification = new Note();
+
+            await mediator.PublishAsync(notification);
+
+            Assert.Equal(1, notification.Count);
+        }
+
+        [Fact]
+        public void Generic_Notification_Handler_Does_Handle_All_Inheriting_Notification_Types()
+        {
+            var mediator = GetMediatorBuilder()
+                .WithNotificationHandler(typeof(GenericNotificationHandler))
+                .Build();
+
+            var notification = new Note();
+
+            mediator.Publish(notification);
+
+            Assert.Equal(1, notification.Count);
+        }
+
+        [Fact]
+        public void Should_Register_All_Notification_Handlers_In_Assembly()
+        {
+            var mediator = GetMediatorBuilder()
+                .WithNotificationHandlerAssemblies(GetTestAssembly())
+                .Build();
+
+            var notification = new Note();
+
+            mediator.Publish(notification);
+
+            Assert.Equal(3, notification.Count);
+        }
     }
 
     public class AutofacMediatorBuilderTests : MediatorBuilderTests
@@ -93,6 +167,11 @@ namespace MediatR.Extensions.Autofac.Tests
         protected override IMediatorBuilder GetMediatorBuilder()
         {
             return new AutofacMediatorBuilder(new ContainerBuilder().Build());
+        }
+
+        protected override Assembly GetTestAssembly()
+        {
+            return typeof (AutofacMediatorBuilderTests).Assembly;
         }
     }
 }

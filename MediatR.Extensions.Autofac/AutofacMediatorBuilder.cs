@@ -74,6 +74,33 @@ namespace MediatR.Extensions.Autofac
                 .Select(i => new KeyedService(AsyncHandlerKey, i)));
         }
 
+
+        protected override void RegisterNotificationHandler(Type notificationHandlerType)
+        {
+            _builder.RegisterType(notificationHandlerType)
+                .As(notificationHandlerType.GetInterfaces()
+                    .Where(i => i.IsClosedTypeOf(typeof(INotificationHandler<>))).ToArray());
+        }
+
+        protected override void RegisterAsyncNotificationHandler(Type notificationHandlerType)
+        {
+            _builder.RegisterType(notificationHandlerType)
+                .As(notificationHandlerType.GetInterfaces()
+                    .Where(i => i.IsClosedTypeOf(typeof(IAsyncNotificationHandler<>))).ToArray());
+        }
+
+        protected override void RegisterNotificationHandlersFromAssembly(Assembly assembly)
+        {
+            _builder.RegisterAssemblyTypes(assembly)
+                .As(t => t.GetInterfaces().Where(i => i.IsClosedTypeOf(typeof (INotificationHandler<>))).ToArray());
+        }
+
+        protected override void RegisterAsyncNotificationHandlersFromAssembly(Assembly assembly)
+        {
+            _builder.RegisterAssemblyTypes(assembly)
+                .As(t => t.GetInterfaces().Where(i => i.IsClosedTypeOf(typeof(IAsyncNotificationHandler<>))).ToArray());
+        }
+        
         protected override IMediator BuildMediator()
         {
             _builder.RegisterSource(new ContravariantRegistrationSource());

@@ -37,31 +37,31 @@ namespace MediatR.Extensions
             return this;
         }
         
-        public IMediatorBuilder WithRequestHandler(Type handlerType)
+        public IMediatorBuilder WithRequestHandler(Type requestHandlerType)
         {
             if (_isBuilt)
             {
                 throw new Exception("Cannot call WithRequestHandler after Build() has been called");
             }
             
-            var interfaces = handlerType.GetInterfaces();
+            var interfaces = requestHandlerType.GetInterfaces();
 
             if (interfaces.Any(CreateGenericTypePredicate(typeof(IAsyncRequestHandler<,>))))
             {
-                RegisterAsyncRequestHandler(handlerType);
+                RegisterAsyncRequestHandler(requestHandlerType);
             }
             else if (interfaces.Any(CreateGenericTypePredicate(typeof (IRequestHandler<,>))))
             {
-                RegisterRequestHandler(handlerType);
+                RegisterRequestHandler(requestHandlerType);
             }
             else
             {
-                throw new ArgumentException("Handler type must implement IRe IRequestHandler<TRequest,TResponse> or IAsyncRequestHandler<TRequest, TResponse>", "handlerType");
+                throw new ArgumentException("Handler type must implement IRe IRequestHandler<TRequest,TResponse> or IAsyncRequestHandler<TRequest, TResponse>", "requestHandlerType");
             }
 
             return this;
         }
-
+        
         public IMediatorBuilder WithRequestHandlerAssemblies(params Assembly[] assemblies)
         {
             if (_isBuilt)
@@ -73,6 +73,47 @@ namespace MediatR.Extensions
             {
                 RegisterRequestHandlersFromAssembly(assembly);
                 RegisterAsyncRequestHandlersFromAssembly(assembly);
+            }
+
+            return this;
+        }
+
+        public IMediatorBuilder WithNotificationHandler(Type notificationHandlerType)
+        {
+            if (_isBuilt)
+            {
+                throw new Exception("Cannot call WithNotificationHandler after Build() has been called");
+            }
+
+            var interfaces = notificationHandlerType.GetInterfaces();
+
+            if (interfaces.Any(CreateGenericTypePredicate(typeof(IAsyncNotificationHandler<>))))
+            {
+                RegisterAsyncNotificationHandler(notificationHandlerType);
+            }
+            else if (interfaces.Any(CreateGenericTypePredicate(typeof(INotificationHandler<>))))
+            {
+                RegisterNotificationHandler(notificationHandlerType);
+            }
+            else
+            {
+                throw new ArgumentException("Handler type must implement IRe IRequestHandler<TRequest,TResponse> or IAsyncRequestHandler<TRequest, TResponse>", "requestHandlerType");
+            }
+
+            return this;
+        }
+
+        public IMediatorBuilder WithNotificationHandlerAssemblies(params Assembly[] assemblies)
+        {
+            if (_isBuilt)
+            {
+                throw new Exception("Cannot call WithNotificationHandlerAssemblies after Build() has been called");
+            }
+
+            foreach (var assembly in assemblies)
+            {
+                RegisterNotificationHandlersFromAssembly(assembly);
+                RegisterAsyncNotificationHandlersFromAssembly(assembly);
             }
 
             return this;
@@ -98,7 +139,14 @@ namespace MediatR.Extensions
         protected abstract void RegisterAsyncRequestDecorator(string name, Type decoratorType);
         protected abstract void RegisterRequestHandlersFromAssembly(Assembly assembly);
         protected abstract void RegisterAsyncRequestHandlersFromAssembly(Assembly assembly);
-        
+
+
+        protected abstract void RegisterNotificationHandler(Type notificationHandlerType);
+        protected abstract void RegisterAsyncNotificationHandler(Type notificationHandlerType);
+        protected abstract void RegisterNotificationHandlersFromAssembly(Assembly assembly);
+        protected abstract void RegisterAsyncNotificationHandlersFromAssembly(Assembly assembly);
+
+
         protected abstract IMediator BuildMediator();
     }
 }

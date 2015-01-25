@@ -13,7 +13,7 @@
     <copyright>Copyright Brendan McMahon 2014</copyright>
     <tags>MediatR log4net</tags>
     <dependencies>
-      <dependency id="MediatR.Extensions" version="0.0.5"/>
+      <dependency id="MediatR.Extensions" version="0.6.0"/>
     </dependencies>
   </metadata>  
 </package>

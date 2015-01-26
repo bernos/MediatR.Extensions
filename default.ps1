@@ -8,6 +8,7 @@ Properties {
 
 Task Default -Depends Build
 
+
 Task Publish -Depends Package {
     $version = getVersionBase
     

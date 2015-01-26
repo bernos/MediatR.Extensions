@@ -31,7 +31,6 @@ $properties = @{
 
 	# Build number metadata that will be appended to semver numers
 	"build_meta" = $BuildMetaData;
-
 	
     "projects" = @(
         "MediatR.Extensions",

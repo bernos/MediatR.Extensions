@@ -1,6 +1,9 @@
 Param(
     [Parameter(Position=1,Mandatory=0)]
-    [string[]]$task_list = @()
+    [string[]]$task_list = @(),
+
+	[Parameter()]
+    [string]$BuildMetaData
 )
 
 $build_file = 'default.ps1'
@@ -25,6 +28,9 @@ $properties = @{
     # from any source control, as we dont commit build artifacts to source
     # control
     "deploy_folder" = 'deploy';
+
+	# Build number metadata that will be appended to semver numers
+	"build_meta" = $BuildMetaData;
 
     "projects" = @(
         "MediatR.Extensions",

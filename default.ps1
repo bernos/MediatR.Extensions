@@ -3,6 +3,7 @@ Properties {
     $configuration = "Release"
     $source_folder = $null
     $solution = $null
+	$build_meta = $null
 }
 
 Task Default -Depends Build
@@ -43,6 +44,12 @@ Task Clean {
 
 Task Set-Versions {
     $version = getVersionBase
+
+	if ($build_meta) {
+        "##teamcity[buildNumber '$version+$build_meta']" | Write-Host
+    } else {
+		"##teamcity[buildNumber '$version']" | Write-Host
+	}
 
     Get-ChildItem -Recurse -Force | Where-Object { $_.Name -eq "AssemblyInfo.cs" } | ForEach-Object {
         (Get-Content $_.FullName) | ForEach-Object {

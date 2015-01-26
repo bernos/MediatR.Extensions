@@ -19,7 +19,7 @@ Task Publish -Depends Package {
     }
 }
 
-Task Package -Depends Set-Versions,Test {
+Task Package -Depends Test {
     foreach($project in $projects) {
         Get-ChildItem -Path "$project\*.csproj" | ForEach-Object {            
             exec { nuget pack -sym $_.FullName -Prop Configuration=$configuration }
@@ -33,7 +33,7 @@ Task Test -Depends Build {
     }
 }
 
-Task Build -Depends Clean {
+Task Build -Depends Clean,Set-Versions {
     Exec { msbuild "$solution" /t:Build /p:Configuration=$configuration } 
 }
 
